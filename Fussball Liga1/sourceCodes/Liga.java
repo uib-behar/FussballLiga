@@ -4,7 +4,7 @@ public class Liga {
 
 	private String name;
 
-	private ArrayList<Team> teams = new ArrayList<>();
+	public ArrayList<Team> teams = new ArrayList<>();
 
 	public Liga(String name) {
 		setName(name);

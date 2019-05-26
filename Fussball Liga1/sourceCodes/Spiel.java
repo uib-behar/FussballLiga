@@ -2,50 +2,30 @@ import java.util.Date;
 
 public class Spiel {
 
-	private Team team1;
-	private Team team2;
-	private int spieltag;
-	private String ergebnis;
+	private Team mannschaft1;
+	private Team mannschaft2;
 
-	public Spiel(Team team1, Team team2, int spieltag, String ergebnis) {
+	public Spiel(Team mannschaft1, Team mannschaft2) {
 
-		this.team1 = team1;
-		this.team2 = team2;
-		this.spieltag = spieltag;
-		this.ergebnis = ergebnis;
+		this.mannschaft1 = mannschaft1;
+		this.mannschaft2 = mannschaft2;
 
 	}
 
-	public Team getTeam1() {
-		return team1;
+	public Team getMannschaft1() {
+		return mannschaft1;
 	}
 
-	public void setTeam1(Team team1) {
-		this.team1 = team1;
+	public void setMannschaft1(Team mannschaft1) {
+		this.mannschaft1 = mannschaft1;
 	}
 
-	public Team getTeam2() {
-		return team2;
+	public Team getMannschaft2() {
+		return mannschaft2;
 	}
 
-	public void setTeam2(Team team2) {
-		this.team2 = team2;
-	}
-
-	public int getSpieltag() {
-		return spieltag;
-	}
-
-	public void setSpieltag(int spieltag) {
-		this.spieltag = spieltag;
-	}
-
-	public String getErgebnis() {
-		return ergebnis;
-	}
-
-	public void setErgebnis(String ergebnis) {
-		this.ergebnis = ergebnis;
+	public void setMannschaft2(Team mannschaft2) {
+		this.mannschaft2 = mannschaft2;
 	}
 
 }
