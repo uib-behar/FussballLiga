@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class Liga {
 
 	private String name;
+	private Tabelle neueTabelle;
 
-	public ArrayList<Team> teams = new ArrayList<Team>();
-	
 	public Liga(String name) {
 		setName(name);
+		neueTabelle = new Tabelle();
 	}
 
 	public void setName(String name) {
@@ -18,30 +18,8 @@ public class Liga {
 		return name;
 	}
 
-	void addTeams(Team name) {
-		teams.add(name);
-
+	public Tabelle getNeueTabelle() {
+		return neueTabelle;
 	}
 
-	public String toString() {
-
-		String erg = "";
-
-		for (int i = 0; i < teams.size(); i++) {
-
-			erg += teams.get(i).getName() + " \n";
-
-		}
-
-		return erg;
-
-	}
-
-	public ArrayList<Team> getTeams() {
-		return teams;
-	}
-
-	public void setTeams(ArrayList<Team> teams) {
-		this.teams = teams;
-	}
 }

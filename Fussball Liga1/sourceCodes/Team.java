@@ -6,8 +6,7 @@ public class Team {
 	private int punkte = 0;
 	private int tordifferenz = 0;
 
-	public Team(int rang, String name) {
-		this.rang = rang;
+	public Team(String name) {
 		this.name = name;
 	}
 
@@ -40,7 +39,7 @@ public class Team {
 	}
 	
 	public void setTordifferenz (int tordifferenz) {
-		this.tordifferenz=tordifferenz;
+		this.tordifferenz = tordifferenz;
 	}
 
 }

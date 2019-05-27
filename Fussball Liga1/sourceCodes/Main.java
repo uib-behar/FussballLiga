@@ -11,19 +11,19 @@ public class Main {
 
 		Liga liga1 = new Liga("Soccer League");
 
-		Team team1 = new Team(0, "HS United");
-		Team team2 = new Team(0, "Fachschaft Informatik");
-		Team team3 = new Team(0, "VFL Neckarau");
-		Team team4 = new Team(0, "MFC 08 Lindenhof");
-		Team team5 = new Team(0, "Uni Mannheim");
-		Team team6 = new Team(0, "Team Hochschule");
+		Team team1 = new Team( "HS United");
+		Team team2 = new Team("Fachschaft Informatik");
+		Team team3 = new Team("VFL Neckarau");
+		Team team4 = new Team("MFC 08 Lindenhof");
+		Team team5 = new Team("Uni Mannheim");
+		Team team6 = new Team("Team Hochschule");
 
-		liga1.addTeams(team1);
-		liga1.addTeams(team2);
-		liga1.addTeams(team3);
-		liga1.addTeams(team4);
-		liga1.addTeams(team5);
-		liga1.addTeams(team6);
+		liga1.getNeueTabelle().addTeams(team1);
+		liga1.getNeueTabelle().addTeams(team2);
+		liga1.getNeueTabelle().addTeams(team3);
+		liga1.getNeueTabelle().addTeams(team4);
+		liga1.getNeueTabelle().addTeams(team5);
+		liga1.getNeueTabelle().addTeams(team6);	
 
 		System.out.println();
 		System.out.println("Willkommen zur " + liga1.getName() + "\n");
@@ -89,7 +89,7 @@ public class Main {
 		Team eins = null;
 		Team zwei = null;
 
-		for (Team teamQ : liga1.teams) {
+		for (Team teamQ : liga1.getNeueTabelle().teams) {
 			if (teamQ.getName().equals(heimTeam))
 				heimteam = heimTeam;
 
@@ -99,7 +99,7 @@ public class Main {
 
 		eins.setPunkte(3);
 
-		for (Team teamR : liga1.teams) {
+		for (Team teamR : liga1.getNeueTabelle().teams) {
 			if (teamR.getName().equals(auswärtsTeam))
 				auswärtsteam = auswärtsTeam;
 		}
