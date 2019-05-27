@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import java.util.Scanner;
 
 public class Main {
@@ -10,14 +9,14 @@ public class Main {
 
 		Scanner sc = new Scanner(System.in);
 
-		Liga liga1 = new Liga("1. Soccer League");
+		Liga liga1 = new Liga("Soccer League");
 
-		Team team1 = new Team("HS United");
-		Team team2 = new Team("Fachschaft Informatik");
-		Team team3 = new Team("VFL Neckarau");
-		Team team4 = new Team("MFC 08 Lindenhof");
-		Team team5 = new Team("Uni Mannheim");
-		Team team6 = new Team("Team Hochschule");
+		Team team1 = new Team(0, "HS United");
+		Team team2 = new Team(0, "Fachschaft Informatik");
+		Team team3 = new Team(0, "VFL Neckarau");
+		Team team4 = new Team(0, "MFC 08 Lindenhof");
+		Team team5 = new Team(0, "Uni Mannheim");
+		Team team6 = new Team(0, "Team Hochschule");
 
 		liga1.addTeams(team1);
 		liga1.addTeams(team2);
@@ -27,29 +26,28 @@ public class Main {
 		liga1.addTeams(team6);
 
 		System.out.println();
-
 		System.out.println("Willkommen zur " + liga1.getName() + "\n");
 
 		do {
 
-		spieltagAnlegen(spieltag, sc);
-		spieltag++;
+			spieltagAnlegen(spieltag, sc);
+			spieltag++;
 
-		System.out.print("Name der Heim-Mannschaft eingeben: ");
-		String heimTeam = sc.nextLine();
+			System.out.print("Name der Heim-Mannschaft eingeben: ");
+			String heimTeam = sc.nextLine();
 
-		System.out.println();
+			System.out.println();
 
-		System.out.print("Name der Auswärts-Mannschaft eingeben: ");
-		String auswärtsTeam = sc.nextLine();
+			System.out.print("Name der Auswärts-Mannschaft eingeben: ");
+			String auswärtsTeam = sc.nextLine();
 
-		matchAusgabe(heimTeam, auswärtsTeam);
+			matchAusgabe(heimTeam, auswärtsTeam);
 
-		matchDay(heimTeam, auswärtsTeam, liga1);
+			matchDay(heimTeam, auswärtsTeam, liga1);
 
-	//System.out.println(liga1.toString());
+			// System.out.println(liga1.toString());
 
-	 } while (spieltagAnlegen(spieltag, sc) == true);
+		} while (spieltagAnlegen(spieltag, sc) == true);
 		System.out.println("Abschluss der Tabelle: ");
 		// tabelleAnzeigen(neueTabelle);
 
@@ -62,14 +60,14 @@ public class Main {
 		for (;;) {
 
 			System.out.println("Möchtest du einen neuen Spieltag anlegen? (j/n)");
-			String matchday = sc.nextLine();
+			String playMatchday = sc.nextLine();
 
-			if (matchday.equals("j")) {
+			if (playMatchday.equals("j")) {
 				System.out.println("Der " + spieltag + ". Spieltag beginnt.");
 				System.out.println();
 				break;
 
-			} else if (matchday.equals("n")) {
+			} else if (playMatchday.equals("n")) {
 				return false;
 
 			} else
@@ -81,33 +79,44 @@ public class Main {
 	}
 
 	static void matchDay(String heimTeam, String auswärtsTeam, Liga liga1) {
-		
+
+		boolean weiter = true;
+
 		String heimteam = "";
 		String auswärtsteam = "";
 
 		Scanner scan = new Scanner(System.in);
+		Team eins = null;
+		Team zwei = null;
 
-			for (Team teamQ : liga1.teams) {
-				if (teamQ.getName().equals(heimTeam))
-					heimteam = heimTeam;
-			}
+		for (Team teamQ : liga1.teams) {
+			if (teamQ.getName().equals(heimTeam))
+				heimteam = heimTeam;
 
-			for (Team teamR : liga1.teams) {
-				if (teamR.getName().equals(auswärtsTeam))
-					auswärtsteam = auswärtsTeam;
-
-			}
-
-			System.out.print("Wie war das Ergebnis? ");
-
-			String ergebnis = scan.nextLine();
-
-			String[] ergebnisArray = ergebnis.split(":");
-
-			System.out.println(
-					heimTeam + "  " + ergebnisArray[0] + " : " + ergebnisArray[1] + "  " + auswärtsTeam);
+			eins = teamQ;
 
 		}
+
+		eins.setPunkte(3);
+
+		for (Team teamR : liga1.teams) {
+			if (teamR.getName().equals(auswärtsTeam))
+				auswärtsteam = auswärtsTeam;
+		}
+
+		System.out.print("Wie war das Ergebnis? ");
+
+		String ergebnis = scan.nextLine();
+
+		String[] ergebnisArray = ergebnis.split(":");
+
+		System.out.println(heimTeam + "  " + ergebnisArray[0] + " : " + ergebnisArray[1] + "  " + auswärtsTeam);
+
+		//		if (ergebnisArray[0] > ergebnisArray[1]) {
+		//			eins.setPunkte(3);
+		//		}
+
+	}
 
 	static void matchAusgabe(String heimTeam, String auswärtsTeam) {
 
@@ -123,8 +132,6 @@ public class Main {
 	}
 
 	static void tabelleAnzeigen(Tabelle neueTabelle) {
-		
-		
 
 	}
 
