@@ -1,9 +1,12 @@
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
+
+		int spieltag = 1;
 
 		Scanner sc = new Scanner(System.in);
 
@@ -16,10 +19,6 @@ public class Main {
 		Team team5 = new Team("Uni Mannheim");
 		Team team6 = new Team("Team Hochschule");
 
-		Spiel spiel1 = new Spiel(team1, team2);
-		Spiel spiel2 = new Spiel(team3, team4);
-		Spiel spiel3 = new Spiel(team5, team6);
-
 		liga1.addTeams(team1);
 		liga1.addTeams(team2);
 		liga1.addTeams(team3);
@@ -31,7 +30,10 @@ public class Main {
 
 		System.out.println("Willkommen zur " + liga1.getName() + "\n");
 
-		spieltagAnlegen(sc);
+		do {
+
+		spieltagAnlegen(spieltag, sc);
+		spieltag++;
 
 		System.out.print("Name der Heim-Mannschaft eingeben: ");
 		String heimTeam = sc.nextLine();
@@ -40,66 +42,89 @@ public class Main {
 
 		System.out.print("Name der Auswärts-Mannschaft eingeben: ");
 		String auswärtsTeam = sc.nextLine();
-		
-		matchAusgabe(heimTeam, auswärtsTeam);
-		
-		matchDay(heimTeam, auswärtsTeam, teams);
 
-		System.out.println(liga1.toString());
+		matchAusgabe(heimTeam, auswärtsTeam);
+
+		matchDay(heimTeam, auswärtsTeam, liga1);
+
+	//System.out.println(liga1.toString());
+
+	 } while (spieltagAnlegen(spieltag, sc) == true);
+		System.out.println("Abschluss der Tabelle: ");
+		// tabelleAnzeigen(neueTabelle);
 
 	}
 
-	static void spieltagAnlegen(Scanner sc) {
+	static boolean spieltagAnlegen(int spieltag, Scanner sc) {
 
-		int spieltag = 0;
+		boolean weiterspielen = true;
 
 		for (;;) {
 
 			System.out.println("Möchtest du einen neuen Spieltag anlegen? (j/n)");
-
 			String matchday = sc.nextLine();
 
 			if (matchday.equals("j")) {
-				spieltag++;
 				System.out.println("Der " + spieltag + ". Spieltag beginnt.");
 				System.out.println();
 				break;
+
 			} else if (matchday.equals("n")) {
-				break;
+				return false;
 
 			} else
 				System.out.println("falsche Eingabe. Bitte Wiederholen!");
 		}
 
+		return true;
+
 	}
 
-	static void matchDay (String heimTeam, String auswärtsTeam, ArrayList <Team> teams) {
+	static void matchDay(String heimTeam, String auswärtsTeam, Liga liga1) {
+		
+		String heimteam = "";
+		String auswärtsteam = "";
 
-		for (Team teamQ : teams) {
+		Scanner scan = new Scanner(System.in);
 
-			if (teamQ.getName().equals(heimTeam)) {
+			for (Team teamQ : liga1.teams) {
+				if (teamQ.getName().equals(heimTeam))
+					heimteam = heimTeam;
+			}
 
-				if(teamQ.getName().equals(auswärtsTeam)) {
-					
-					Scanner scan = new Scanner(System.in);
-					
-					String ergebnis = scan.nextLine();
-					
-					String[] ergebnisArray = ergebnis.split(":");
-					
-					System.out.println(heimTeam + "  " + ergebnisArray[0] + " : " + ergebnisArray[1] + "  " + auswärtsTeam);
-
-				}
+			for (Team teamR : liga1.teams) {
+				if (teamR.getName().equals(auswärtsTeam))
+					auswärtsteam = auswärtsTeam;
 
 			}
 
+			System.out.print("Wie war das Ergebnis? ");
+
+			String ergebnis = scan.nextLine();
+
+			String[] ergebnisArray = ergebnis.split(":");
+
+			System.out.println(
+					heimTeam + "  " + ergebnisArray[0] + " : " + ergebnisArray[1] + "  " + auswärtsTeam);
+
 		}
 
-	}
-	
 	static void matchAusgabe(String heimTeam, String auswärtsTeam) {
+
+		System.out.println(" \nEs spielt " + heimTeam + " gegen " + auswärtsTeam + "\n");
+
+	}
+
+	static int countPoints(Team punkte) {
+
+		int neuePunkte = 0;
+
+		return neuePunkte;
+	}
+
+	static void tabelleAnzeigen(Tabelle neueTabelle) {
 		
-		System.out.println("Es spielt " + heimTeam + " gegen " + auswärtsTeam + "\n");
+		
 
 	}
 

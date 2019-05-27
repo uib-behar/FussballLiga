@@ -4,8 +4,8 @@ public class Liga {
 
 	private String name;
 
-	public ArrayList<Team> teams = new ArrayList<>();
-
+	public ArrayList<Team> teams = new ArrayList<Team>();
+	
 	public Liga(String name) {
 		setName(name);
 	}
@@ -35,5 +35,13 @@ public class Liga {
 
 		return erg;
 
+	}
+
+	public ArrayList<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(ArrayList<Team> teams) {
+		this.teams = teams;
 	}
 }
