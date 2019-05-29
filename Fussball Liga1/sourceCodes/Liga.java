@@ -7,7 +7,6 @@ public class Liga {
 
 	public Liga(String name) {
 		setName(name);
-		neueTabelle = new Tabelle();
 	}
 
 	public void setName(String name) {
@@ -18,7 +17,7 @@ public class Liga {
 		return name;
 	}
 
-	public Tabelle getNeueTabelle() {
+	public Tabelle getTabelle() {
 		return neueTabelle;
 	}
 

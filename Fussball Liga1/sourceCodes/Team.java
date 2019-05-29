@@ -2,9 +2,8 @@
 public class Team {
 
 	private String name;
-	private int rang;
-	private int punkte = 0;
-	private int tordifferenz = 0;
+	private int punkte;
+	private int tordifferenz;
 
 	public Team(String name) {
 		this.name = name;
@@ -16,14 +15,6 @@ public class Team {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getRang() {
-		return rang;
-	}
-
-	public void setRang(int rang) {
-		this.rang = rang;
 	}
 
 	public int getPunkte() {
@@ -42,4 +33,9 @@ public class Team {
 		this.tordifferenz = tordifferenz;
 	}
 
+	public String toString() {
+		
+		return getName();
+		
+	}
 }

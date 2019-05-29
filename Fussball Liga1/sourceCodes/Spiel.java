@@ -4,6 +4,8 @@ public class Spiel {
 
 	private Team mannschaft1;
 	private Team mannschaft2;
+	private int tore1;
+	private int tore2;
 
 	public Spiel(Team mannschaft1, Team mannschaft2) {
 
@@ -26,6 +28,24 @@ public class Spiel {
 
 	public void setMannschaft2(Team mannschaft2) {
 		this.mannschaft2 = mannschaft2;
+	}
+
+	void setErgebnis (String ergebnis) {
+
+		String[] result = ergebnis.split(":");
+
+		tore1 = Integer.parseInt(result[0]);
+		tore2 = Integer.parseInt(result[1]);
+
+	}
+
+	public int getTore1() {
+		return tore1;
+	}
+
+	public int getTore2() {
+		return tore2;
+
 	}
 
 }

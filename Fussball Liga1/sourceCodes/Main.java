@@ -11,19 +11,23 @@ public class Main {
 
 		Liga liga1 = new Liga("Soccer League");
 
-		Team team1 = new Team( "HS United");
-		Team team2 = new Team("Fachschaft Informatik");
+		Team team1 = new Team("HS United");
+		Team team2 = new Team("Die Informatiker");
 		Team team3 = new Team("VFL Neckarau");
 		Team team4 = new Team("MFC 08 Lindenhof");
 		Team team5 = new Team("Uni Mannheim");
 		Team team6 = new Team("Team Hochschule");
+		Team team7 = new Team("1. FC Mannheim");
+		Team team8 = new Team("eSports 68");
 
-		liga1.getNeueTabelle().addTeams(team1);
-		liga1.getNeueTabelle().addTeams(team2);
-		liga1.getNeueTabelle().addTeams(team3);
-		liga1.getNeueTabelle().addTeams(team4);
-		liga1.getNeueTabelle().addTeams(team5);
-		liga1.getNeueTabelle().addTeams(team6);	
+		liga1.getTabelle().addTeams(team1);
+		liga1.getTabelle().addTeams(team2);
+		liga1.getTabelle().addTeams(team3);
+		liga1.getTabelle().addTeams(team4);
+		liga1.getTabelle().addTeams(team5);
+		liga1.getTabelle().addTeams(team6);
+		liga1.getTabelle().addTeams(team7);
+		liga1.getTabelle().addTeams(team8);
 
 		System.out.println();
 		System.out.println("Willkommen zur " + liga1.getName() + "\n");
@@ -41,7 +45,7 @@ public class Main {
 			System.out.print("Name der Auswärts-Mannschaft eingeben: ");
 			String auswärtsTeam = sc.nextLine();
 
-			matchAusgabe(heimTeam, auswärtsTeam);
+			// matchAusgabe(heimTeam, auswärtsTeam);
 
 			matchDay(heimTeam, auswärtsTeam, liga1);
 
@@ -80,47 +84,31 @@ public class Main {
 
 	static void matchDay(String heimTeam, String auswärtsTeam, Liga liga1) {
 
-		boolean weiter = true;
-
-		String heimteam = "";
-		String auswärtsteam = "";
-
 		Scanner scan = new Scanner(System.in);
-		Team eins = null;
-		Team zwei = null;
 
-		for (Team teamQ : liga1.getNeueTabelle().teams) {
-			if (teamQ.getName().equals(heimTeam))
-				heimteam = heimTeam;
+		for (int i = 0; i < liga1.getTabelle().getTeams().size(); i++) {
 
-			eins = teamQ;
+			if (liga1.getTabelle().getTeams().get(i).equals(heimTeam))
+				heimTeam = liga1.getTabelle().getTeams().get(i).getName();
 
+			else if (liga1.getTabelle().getTeams().get(i).equals(auswärtsTeam))
+				auswärtsTeam = liga1.getTabelle().getTeams().get(i).getName();
 		}
 
-		eins.setPunkte(3);
+			Spiel spiel1 = new Spiel(spiel1.getMannschaft1(),spiel1.getMannschaft2());
 
-		for (Team teamR : liga1.getNeueTabelle().teams) {
-			if (teamR.getName().equals(auswärtsTeam))
-				auswärtsteam = auswärtsTeam;
-		}
+			System.out.print("Wie war das Ergebnis? ");
+			String eingabe = scan.nextLine();
 
-		System.out.print("Wie war das Ergebnis? ");
+			spiel1.setErgebnis(eingabe);
 
-		String ergebnis = scan.nextLine();
-
-		String[] ergebnisArray = ergebnis.split(":");
-
-		System.out.println(heimTeam + "  " + ergebnisArray[0] + " : " + ergebnisArray[1] + "  " + auswärtsTeam);
-
-		//		if (ergebnisArray[0] > ergebnisArray[1]) {
-		//			eins.setPunkte(3);
-		//		}
+			matchAusgabe(heimTeam, auswärtsTeam, spiel1);
 
 	}
 
-	static void matchAusgabe(String heimTeam, String auswärtsTeam) {
+	static void matchAusgabe(Team heimTeam, Team auswärtsTeam, Spiel spiel1) {
 
-		System.out.println(" \nEs spielt " + heimTeam + " gegen " + auswärtsTeam + "\n");
+		System.out.println(heimTeam + "  " + spiel1.getTore1() + " : " + spiel1.getTore2() + "  " + auswärtsTeam);
 
 	}
 
