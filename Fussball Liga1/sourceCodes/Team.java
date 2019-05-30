@@ -3,10 +3,12 @@ public class Team {
 
 	private String name;
 	private int punkte;
-	private int tordifferenz;
+	private int tore = 0;;
 
-	public Team(String name) {
+	public Team(String name, Tabelle tabelle) {
 		this.name = name;
+		tabelle.addTeams(this);
+
 	}
 
 	public String getName() {
@@ -22,20 +24,25 @@ public class Team {
 	}
 
 	public void setPunkte(int neuePunkte) {
-		punkte = punkte + neuePunkte;
+		this.punkte = punkte;
+	}
+
+	public int getTore() {
+		return tore;
+	}
+
+	public void setTore(int tore) {
+		this.tore = tore;
 	}
 	
-	public int getTordifferenz() {
-		return tordifferenz;
-	}
-	
-	public void setTordifferenz (int tordifferenz) {
-		this.tordifferenz = tordifferenz;
+	public void ergebnisMatch (int punkte, int tore) {
+		this.punkte = this.punkte + punkte;
+		this.tore = this.tore + tore;
 	}
 
 	public String toString() {
-		
-		return getName();
-		
+
+		return getName() + "\t" + getTore() + "\t" + getPunkte();
+
 	}
 }
