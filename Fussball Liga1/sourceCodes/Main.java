@@ -92,7 +92,7 @@ public class Main {
 			if (t.getName().equals(heimTeam))
 				heim = t;
 			else if (t.getName().equals(auswärtsTeam))
-				gast = t;
+				gast = t;	
 		}
 
 		Spiel spiel1 = new Spiel(heim, gast);
