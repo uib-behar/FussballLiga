@@ -30,8 +30,24 @@ public class Tabelle {
 		return erg;
 	}
 
+	public void tabelleSortieren() {
+		Team temp = null;
+
+		for(int i = 0; i<teams.size(); i++) {
+			for(int j = 1+i; j<teams.size(); j++) {
+				if(teams.get(i).getPunkte() < teams.get(j).getPunkte()){
+					temp = teams.get(i);
+					teams.set(i, teams.get(i));
+					teams.set(j, temp);
+				}
+			}
+		}
+	}
+
 	public String getTabelle() {
 		String s = "Team\tTordifferenz\tPunkte\n";
+
+		tabelleSortieren();
 
 		for (Team t : teams) {
 			s += t.toString() + "\n";
@@ -48,35 +64,5 @@ public class Tabelle {
 
 	}
 
-//	public static Tabelle bubblesort (Tabelle tab) {
-//		
-//			ArrayList<Team> neueTeams = ArrayList <>();
-//
-//			for(int i = 1; i < tab.teams.size(); i++) {
-//				for(int j = 0; j < tab.teams.size()-i; j++) {
-//
-//					if(tab.teams.get(j).getPunkte() > tab.teams.get(j+1).getPunkte() {
-//						
-//						neueTeams.add()
-//						
-//						
-//						
-//						
-//						
-//						temp=zusortieren[j];
-//						zusortieren[j]=zusortieren[j+1];
-//						zusortieren[j+1]=temp;
-//
-//					}
-//				}
-//
-//			}
-//			
-//			return zusortieren;
-//
-//		}
-
-
-	}
 
 }

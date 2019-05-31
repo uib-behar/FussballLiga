@@ -57,11 +57,23 @@ public class Main {
 
 					spieltag++;
 
-				} else {
+				} else if (playMatchday.equals("n")) {
+					
+					System.out.print("Name der Heim-Mannschaft eingeben: ");
+					String heimTeam = sc.nextLine();
+
+					System.out.print("\nName der Auswärts-Mannschaft eingeben: ");
+					String auswärtsTeam = sc.nextLine();
+
+					matchDay(heimTeam, auswärtsTeam, liga1, heimTore, gastTore, tabelle);
+
+					spieltag++;
+					
+					
+				} else
+	
 					break;
 				}
-
-			}
 
 		} while (beenden = true);
 		System.out.println("Abschluss der Tabelle \n" + tabelle.getTabelle());
@@ -104,33 +116,9 @@ public class Main {
 			heim.ergebnisMatch(1, heimTore - gastTore);
 			gast.ergebnisMatch(1, gastTore - heimTore);
 
-		}
-
-		//		for(int i = 0; i < tabelle.getTabelle().length(); i++) {
-		//			 if (heim.getPunkte() > gast.getPunkte()) {
-		//				 tabelle.getTabelle();
-		//			 }
-		//		}
+		}	
 
 	}
 
-	//	public static int[] bubblesort(int[] zusortieren) {
-	//		int temp = 0;
-	//
-	//		for(int i = 1; i< zusortieren.length; i++) {
-	//			for(int j = 0; j < zusortieren.length-i; j++) {
-	//
-	//				if(zusortieren[j]>zusortieren[j+1]) {
-	//					temp=zusortieren[j];
-	//					zusortieren[j]=zusortieren[j+1];
-	//					zusortieren[j+1]=temp;
-	//
-	//				}
-	//			}
-	//
-	//		}
-	//		
-	//		return zusortieren;
-	//
-	//	}
+
 }
