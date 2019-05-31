@@ -31,13 +31,14 @@ public class Tabelle {
 	}
 
 	public void tabelleSortieren() {
+		
 		Team temp = null;
 
 		for(int i = 0; i<teams.size(); i++) {
-			for(int j = 1+i; j<teams.size(); j++) {
+			for(int j = i+1; j<teams.size(); j++) {
 				if(teams.get(i).getPunkte() < teams.get(j).getPunkte()){
 					temp = teams.get(i);
-					teams.set(i, teams.get(i));
+					teams.set(i, teams.get(j));
 					teams.set(j, temp);
 				}
 			}
