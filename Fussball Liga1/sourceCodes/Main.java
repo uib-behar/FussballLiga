@@ -8,10 +8,9 @@ public class Main {
 		int spieltag = 1;
 		int heimTore = 0;
 		int gastTore = 0;
-		
+
 		String playMatchday = "";
 		String input;
-		
 
 		Scanner sc = new Scanner(System.in);
 
@@ -19,82 +18,53 @@ public class Main {
 		Tabelle tabelle = new Tabelle();
 
 		Team team1 = new Team("HS United", tabelle);
-		Team team2 = new Team("Die Informatiker", tabelle);
-		Team team3 = new Team("VFL Neckarau", tabelle);
-		Team team4 = new Team("MFC 08 Lindenhof", tabelle);
-		Team team5 = new Team("Uni Mannheim", tabelle);
-		Team team6 = new Team("Team Hochschule", tabelle);
-		Team team7 = new Team("1. FC Mannheim", tabelle);
+		Team team2 = new Team("UIBler MA", tabelle);
+		Team team3 = new Team("Waldhof MA", tabelle);
+		Team team4 = new Team("Lindenhof", tabelle);
+		Team team5 = new Team("Uni Mannem", tabelle);
+		Team team6 = new Team("Hochschule", tabelle);
+		Team team7 = new Team("FC Mannheim", tabelle);
 		Team team8 = new Team("eSports 68", tabelle);
 
-//		liga1.getTabelle().addTeams(team1);
-//		liga1.getTabelle().addTeams(team2);
-//		liga1.getTabelle().addTeams(team3);
-//		liga1.getTabelle().addTeams(team4);
-//		liga1.getTabelle().addTeams(team5);
-//		liga1.getTabelle().addTeams(team6);
-//		liga1.getTabelle().addTeams(team7);
-//		liga1.getTabelle().addTeams(team8);
+		System.out.println("Willkommen zur " + liga1.getName() + "\n\n" + tabelle.getTabelle());
 
-		System.out.println();
-		System.out.println("Willkommen zur " + liga1.getName() + "\n");
-		
-		boolean weiterspielen = true;
+		boolean beenden;
 
 		do {
-			
+
 			System.out.println("\n-> Tabelle \n-> Spiel");
-			
-			input=sc.nextLine();
-			
-			if(input.equals("Tabelle")) {
+
+			input = sc.nextLine();
+
+			if (input.equals("Tabelle")) {
 				System.out.println("Tabelle: \n" + tabelle.getTabelle());
-			} else if(input.equals("Spiel")) {		
-			System.out.println("Möchtest du einen neuen Spieltag anlegen? (j/n)");
-			playMatchday = sc.nextLine();
+			} else if (input.equals("Spiel")) {
 
-			spieltagAnlegen(playMatchday, spieltag, sc, weiterspielen);
+				System.out.println("Möchtest du einen neuen Spieltag anlegen? (j/n)");
+				playMatchday = sc.nextLine();
 
-			System.out.print("Name der Heim-Mannschaft eingeben: ");
-			String heimTeam = sc.nextLine();
+				if (playMatchday.equals("j")) {
+					System.out.println("Der " + spieltag + ". Spieltag beginnt. \n");
 
-			System.out.println();
 
-			System.out.print("Name der Auswärts-Mannschaft eingeben: ");
-			String auswärtsTeam = sc.nextLine();
-			
+					System.out.print("Name der Heim-Mannschaft eingeben: ");
+					String heimTeam = sc.nextLine();
 
-			// matchAusgabe(heimTeam, auswärtsTeam);
+					System.out.print("\nName der Auswärts-Mannschaft eingeben: ");
+					String auswärtsTeam = sc.nextLine();
 
-			matchDay(heimTeam, auswärtsTeam, liga1, heimTore, gastTore, tabelle);
-			System.out.println(tabelle.getTabelle());
-			
+					matchDay(heimTeam, auswärtsTeam, liga1, heimTore, gastTore, tabelle);
+
+					spieltag++;
+
+				} else {
+					break;
+				}
+
 			}
 
-		} while (weiterspielen= true);
+		} while (beenden = true);
 		System.out.println("Abschluss der Tabelle \n" + tabelle.getTabelle());
-
-	}
-
-	static boolean spieltagAnlegen(String playMatchday, int spieltag, Scanner sc, boolean weiterspielen) {
-
-		for (;;) {
-
-			if (playMatchday.equals("j")) {
-				System.out.println("Der " + spieltag + ". Spieltag beginnt.");
-				spieltag++;
-				System.out.println();
-				weiterspielen = true;
-				break;
-
-			} else if (playMatchday.equals("n")) {
-				weiterspielen = false;
-				break;
-
-			} else
-				System.out.println("falsche Eingabe. Bitte Wiederholen!");
-		}
-		return weiterspielen;
 
 	}
 
@@ -115,15 +85,19 @@ public class Main {
 
 		Spiel spiel1 = new Spiel(heim, gast);
 
-		System.out.print("Wie war das Ergebnis? ");
+		System.out.print("Wie war das Ergebnis? \t");
 		String eingabe = scan.nextLine();
+		System.out.println();
 
-		spiel1.setErgebnis(eingabe);
+		String[] result = eingabe.split(":");
 
-		if(heimTore > gastTore) {
+		heimTore = Integer.parseInt(result[0]);
+		gastTore = Integer.parseInt(result[1]);
+
+		if (heimTore > gastTore) {
 			heim.ergebnisMatch(3, heimTore - gastTore);
 			gast.ergebnisMatch(0, gastTore - heimTore);
-		}else if (heimTore < gastTore) {
+		} else if (heimTore < gastTore) {
 			heim.ergebnisMatch(0, heimTore - gastTore);
 			gast.ergebnisMatch(3, gastTore - heimTore);
 		} else {
@@ -132,28 +106,31 @@ public class Main {
 
 		}
 
-	//	matchAusgabe(heimTeam, auswärtsTeam, spiel1, tabelle);
+		//		for(int i = 0; i < tabelle.getTabelle().length(); i++) {
+		//			 if (heim.getPunkte() > gast.getPunkte()) {
+		//				 tabelle.getTabelle();
+		//			 }
+		//		}
 
 	}
 
-	static void matchAusgabe(String heimTeam, Team auswärtsTeam, Spiel spiel1, Tabelle tabelle) {
-		
-		Team heim = null;
-		Team gast = null;
-		
-		for (Team tt : tabelle.getTeams()) {
-			if (tt.getName().equals(heimTeam))
-				heim = tt;
-			else if (tt.getName().equals(auswärtsTeam))
-				gast = tt;
-		}
-
-		System.out.println(heim + "  " + spiel1.getTore1() + " : " + spiel1.getTore2() + "  " + gast);
-
-	}
-
-	static void tabelleAnzeigen(Tabelle neueTabelle) {
-
-	}
-
+	//	public static int[] bubblesort(int[] zusortieren) {
+	//		int temp = 0;
+	//
+	//		for(int i = 1; i< zusortieren.length; i++) {
+	//			for(int j = 0; j < zusortieren.length-i; j++) {
+	//
+	//				if(zusortieren[j]>zusortieren[j+1]) {
+	//					temp=zusortieren[j];
+	//					zusortieren[j]=zusortieren[j+1];
+	//					zusortieren[j+1]=temp;
+	//
+	//				}
+	//			}
+	//
+	//		}
+	//		
+	//		return zusortieren;
+	//
+	//	}
 }

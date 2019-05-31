@@ -1,4 +1,3 @@
-import java.util.Date;
 
 public class Spiel {
 
@@ -28,15 +27,6 @@ public class Spiel {
 
 	public void setMannschaft2(Team mannschaft2) {
 		this.mannschaft2 = mannschaft2;
-	}
-
-	void setErgebnis (String ergebnis) {
-
-		String[] result = ergebnis.split(":");
-
-		tore1 = Integer.parseInt(result[0]);
-		tore2 = Integer.parseInt(result[1]);
-
 	}
 
 	public int getTore1() {
