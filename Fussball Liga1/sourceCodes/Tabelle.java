@@ -37,6 +37,7 @@ public class Tabelle {
 		for(int i = 0; i<teams.size(); i++) {
 			for(int j = i+1; j<teams.size(); j++) {
 				if(teams.get(i).getPunkte() < teams.get(j).getPunkte()){
+					
 					temp = teams.get(i);
 					teams.set(i, teams.get(j));
 					teams.set(j, temp);
